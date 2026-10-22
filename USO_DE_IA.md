@@ -22,6 +22,7 @@ As decisões de produto e de arquitetura são minhas. A IA sugeriu opções e eu
 | Passo 3 | Instalação do EF Core com SQLite | Pacotes `Microsoft.EntityFrameworkCore.Sqlite` e `Microsoft.EntityFrameworkCore.Design`, versão 8.x | — |
 | Passo 4 | Modelo `Curso`, `AppDbContext` e seed provisório | Estrutura das classes e dados fictícios | Seed será substituído pelos dados do Figma |
 | Passo 5 | Migration, banco SQLite e endpoint `GET /api/cursos` | `Program.cs` com `Migrate()` e rota de listagem | — |
+| Passo 6 | `Dockerfile` multi-stage e leitura da porta pela variável `PORT` | Estrutura do Dockerfile e ajuste no `Program.cs` | Local do Dockerfile (a IA sugeriu antes dentro de `backend/`; movi para a raiz do repositório). Docker não instalado localmente: validei o `publish` em Release e a variável `PORT` sem contêiner |
 
 ## Como o conteúdo foi validado
 - Cada instalação foi conferida com comandos de versão (`dotnet --version`, `dotnet ef --version`, `git --version`).
