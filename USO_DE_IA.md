@@ -20,6 +20,8 @@ As decisões de produto e de arquitetura são minhas. A IA sugeriu opções e eu
 | Passo 1 | Instalação do ambiente no Ubuntu | Instalação do .NET 8 SDK via `apt`, criação do repositório com `gh` | Comandos de PATH escritos para `~/.bashrc` (uso zsh, então usei `~/.zshrc`) |
 | Passo 2 | Criação do projeto Minimal API | Comandos `dotnet new web` e `dotnet watch run`, explicação dos arquivos gerados | — |
 | Passo 3 | Instalação do EF Core com SQLite | Pacotes `Microsoft.EntityFrameworkCore.Sqlite` e `Microsoft.EntityFrameworkCore.Design`, versão 8.x | — |
+| Passo 4 | Modelo `Curso`, `AppDbContext` e seed provisório | Estrutura das classes e dados fictícios | Seed será substituído pelos dados do Figma |
+| Passo 5 | Migration, banco SQLite e endpoint `GET /api/cursos` | `Program.cs` com `Migrate()` e rota de listagem | — |
 
 ## Como o conteúdo foi validado
 - Cada instalação foi conferida com comandos de versão (`dotnet --version`, `dotnet ef --version`, `git --version`).
@@ -28,6 +30,7 @@ As decisões de produto e de arquitetura são minhas. A IA sugeriu opções e eu
 - O `git status` foi usado para confirmar que `bin/` e `obj/` não entram no repositório.
 - Os pacotes do EF Core foram conferidos no `.csproj` e o projeto foi compilado com `dotnet build`.
 - Mensagens de erro foram lidas e diagnosticadas antes de aplicar qualquer correção.
+- A migration foi lida antes de ser aplicada, e o JSON de `/api/cursos` foi conferido com `curl`.
 
 ## Exemplo de erro ou inadequação identificado
 O comando de instalação do `dotnet-ef` sugerido pela IA usava `--version 8.*` sem aspas. No zsh, o asterisco é interpretado como padrão de arquivos e o comando falhou com `zsh: no matches found: 8.*`. Como consequência, o `dotnet-ef` não foi instalado e o `dotnet ef --version` retornou "command not found".
