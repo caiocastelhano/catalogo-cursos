@@ -1,0 +1,31 @@
+.tag-categoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--borda-suave);
+  color: var(--preto);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.tag-categoria--matematica {
+  background: var(--pessego);
+}
+
+.tag-categoria--ciencias {
+  background: var(--lilas);
+}
+
+.tag-categoria--linguagens {
+  background: var(--tag-linguagens);
+}
+
+.tag-categoria img {
+  width: 16px;
+  height: 16px;
+}

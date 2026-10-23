@@ -1,15 +1,27 @@
 async function requisitar(caminho, opcoes) {
-  const resposta = await fetch(`/api${caminho}`, opcoes);
+  let resposta;
+  try {
+    resposta = await fetch(`/api${caminho}`, opcoes);
+  } catch (e) {
+    if (e.name === 'AbortError') throw e;
+    throw new Error('Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.');
+  }
 
   if (!resposta.ok) {
     let detalhe = '';
-    try {
-      const problema = await resposta.json();
-      detalhe = problema.detail || problema.title || '';
-    } catch {
-      // resposta sem JSON: usa a mensagem padrão abaixo
+    if (resposta.status < 500) {
+      try {
+        const problema = await resposta.json();
+        detalhe = problema.detail || problema.title || '';
+      } catch {
+        // resposta sem JSON: usa a mensagem padrão abaixo
+      }
     }
-    const erro = new Error(detalhe || `Erro ${resposta.status} ao consultar a API.`);
+    const padrao =
+      resposta.status >= 500
+        ? 'O servidor está indisponível no momento. Tente novamente em instantes.'
+        : `Erro ${resposta.status} ao consultar a API.`;
+    const erro = new Error(detalhe || padrao);
     erro.status = resposta.status;
     throw erro;
   }

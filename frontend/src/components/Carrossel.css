@@ -1,0 +1,54 @@
+.carrossel__trilho {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 16px 4px 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carrossel__trilho::-webkit-scrollbar {
+  display: none;
+}
+
+.carrossel__item {
+  display: flex;
+  flex: 0 0 auto;
+  width: 272px;
+  scroll-snap-align: start;
+}
+
+.carrossel__item > * {
+  flex: 1;
+}
+
+.carrossel__controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.carrossel__setas {
+  display: flex;
+  gap: 8px;
+}
+
+.carrossel__setas button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.carrossel__setas button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}

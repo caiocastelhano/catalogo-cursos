@@ -1,0 +1,98 @@
+.curso-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  aspect-ratio: 272 / 395;
+  overflow: hidden;
+  border-radius: var(--raio-card);
+  background: var(--vermelho-card);
+  color: var(--branco);
+  box-shadow: var(--sombra-card);
+}
+
+.curso-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.curso-card:has(.curso-card__link:focus-visible) {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+}
+
+.curso-card__imagem {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Degradê estimado: ver diferenças Figma x aplicação */
+.curso-card__sombra {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(153, 2, 18, 0.25) 0%,
+    rgba(153, 2, 18, 0.55) 35%,
+    #990212 62%
+  );
+}
+
+.curso-card__tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.curso-card__texto {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 24px 24px 28px;
+}
+
+.curso-card__titulo {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.curso-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Link esticado: o card inteiro é clicável */
+.curso-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.curso-card__link:focus-visible {
+  outline: none;
+}
+
+.curso-card__descricao {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.curso-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.curso-card__meta li {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--branco);
+  color: var(--preto);
+  font-size: 12px;
+  font-weight: 600;
+}

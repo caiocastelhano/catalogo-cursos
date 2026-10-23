@@ -1,0 +1,64 @@
+.depoimentos {
+  padding-block: 64px;
+}
+
+.depoimentos--vinho {
+  background: var(--vinho);
+  color: var(--branco);
+}
+
+.depoimentos--pessego {
+  background: var(--pessego);
+  color: var(--preto);
+}
+
+.depoimentos__etiqueta {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.depoimentos__titulo {
+  margin-bottom: 24px;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.depoimento {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 330px;
+  margin: 0;
+  padding: 24px;
+  border-radius: var(--raio-card);
+  box-shadow: var(--sombra-card);
+}
+
+.depoimentos--vinho .depoimento {
+  background: var(--vermelho-depoimento);
+}
+
+.depoimentos--pessego .depoimento {
+  background: var(--branco);
+}
+
+.depoimento blockquote {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.depoimento__autor {
+  display: grid;
+  gap: 2px;
+  font-size: 14px;
+}
+
+.depoimento__estrelas {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}

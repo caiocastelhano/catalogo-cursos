@@ -112,3 +112,7 @@ ul {
   border-color: var(--borda);
   color: inherit;
 }
+.botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

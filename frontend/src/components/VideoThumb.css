@@ -1,0 +1,25 @@
+.video-thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--raio-card);
+}
+
+.video-thumb img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.video-thumb__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--preto);
+  transform: translate(-50%, -50%);
+}

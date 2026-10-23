@@ -24,3 +24,8 @@
   --largura-container: 1200px;
   --gutter: 24px;
 }
+:root {
+  /* Estimados: ver diferenças Figma x aplicação */
+  --tag-linguagens: #cfe3ff;
+  --vermelho-hero: rgba(190, 18, 22, 0.82);
+}
