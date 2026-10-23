@@ -1,0 +1,45 @@
+.barra-matricula {
+  position: fixed;
+  right: 0;
+  bottom: 16px;
+  left: 0;
+  z-index: 50;
+  padding-inline: var(--gutter);
+  pointer-events: none;
+}
+
+.barra-matricula__conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: var(--largura-container);
+  margin-inline: auto;
+  padding: 12px 12px 12px 24px;
+  border-radius: 12px;
+  background: var(--preto);
+  color: var(--branco);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}
+
+.barra-matricula__nome {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barra-matricula .botao {
+  flex: none;
+}
+
+/* A barra é fixa: reserva espaço no rodapé e nas rolagens por foco (teclado) */
+body:has(.barra-matricula) .rodape {
+  padding-bottom: 112px;
+}
+
+html:has(.barra-matricula) {
+  scroll-padding-bottom: 104px;
+}

@@ -1,0 +1,107 @@
+.detalhe-hero {
+  padding-block: 64px 80px;
+}
+
+.detalhe-hero__grade {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.detalhe-hero__titulo {
+  margin-block: 16px 24px;
+  font-size: clamp(32px, 4.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.info {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.info__linha {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.info__linha svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.detalhe-beneficios {
+  padding-bottom: 64px;
+}
+
+.sobre {
+  padding-block: 32px 80px;
+}
+
+.sobre__grade {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.sobre__titulo {
+  margin-bottom: 16px;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.sobre__texto {
+  line-height: 1.6;
+}
+
+/* Lista de módulos, aulas e dúvidas dentro dos acordeões */
+.modulos,
+.duvidas {
+  display: grid;
+  gap: 24px;
+}
+
+.modulos > li > ul {
+  margin-block: 8px 0;
+}
+
+.bloco-texto + .bloco-texto {
+  margin-top: 32px;
+}
+
+.fale {
+  padding-block: 64px;
+  background: var(--vinho);
+  color: var(--branco);
+  text-align: center;
+}
+
+.fale__etiqueta {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.fale__titulo {
+  margin-block: 8px 24px;
+  font-size: clamp(32px, 4.5vw, 48px);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .detalhe-hero__grade,
+  .sobre__grade {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .detalhe-hero {
+    padding-block: 40px 56px;
+  }
+}

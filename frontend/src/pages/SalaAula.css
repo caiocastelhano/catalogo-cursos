@@ -1,0 +1,195 @@
+.sala {
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sala__lateral {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--borda-suave);
+  background: var(--branco);
+}
+
+.sala__escuro {
+  background: var(--preto);
+  color: var(--branco);
+}
+
+.sala__voltar {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: inherit;
+}
+
+.sala__cabecalho {
+  padding: 20px 24px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sala__etiqueta {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sala__titulo {
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.sala__progresso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+}
+
+.sala__barra {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.sala__barra span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--branco);
+}
+
+.sala__percentual {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sala__busca {
+  position: relative;
+  padding: 16px 24px;
+}
+
+.sala__busca input {
+  width: 100%;
+  height: 36px;
+  padding: 0 40px 0 14px;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  background: var(--branco);
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+}
+
+.sala__lupa {
+  position: absolute;
+  top: 50%;
+  right: 38px;
+  display: grid;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.sala__vazio {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: var(--cinza-texto);
+}
+
+.sala__modulo {
+  border-bottom: 1px solid var(--borda-suave);
+}
+
+.sala__modulo-botao {
+  display: block;
+  width: 100%;
+  padding: 12px 24px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sala__aulas {
+  padding-bottom: 8px;
+}
+
+.sala__aula {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 24px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sala__aula:hover {
+  background: #f4f4f4;
+}
+
+.sala__conteudo {
+  padding: 40px var(--gutter) 80px;
+}
+
+.sala__conteudo:focus {
+  outline: none;
+}
+
+.sala__miolo {
+  max-width: 915px;
+  margin-inline: auto;
+}
+
+/* Proporção do banner estimada: ver diferenças Figma x aplicação */
+.sala__banner {
+  width: 100%;
+  aspect-ratio: 6 / 1;
+  object-fit: cover;
+  border-radius: var(--raio-card);
+}
+
+.sala__secao h2 {
+  margin-block: 40px 16px;
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.sala__secao p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .sala {
+    grid-template-columns: 1fr;
+  }
+
+  .sala__lateral {
+    position: static;
+    height: auto;
+    border-right: 0;
+  }
+
+  .sala__banner {
+    aspect-ratio: 3 / 1;
+  }
+}

@@ -1,20 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
 
-// Carrega dados da API e controla carregamento, erro e nova tentativa.
-// "chave" muda quando a consulta muda (ex.: filtros), disparando nova requisição.
 export function useApi(carregar, chave) {
-  const [estado, setEstado] = useState({ dados: null, carregando: true, erro: '' });
+  const [estado, setEstado] = useState({ dados: null, carregando: true, erro: '', status: null });
   const [tentativa, setTentativa] = useState(0);
 
   useEffect(() => {
     const controle = new AbortController();
-    setEstado((atual) => ({ ...atual, carregando: true, erro: '' }));
+    setEstado((atual) => ({ ...atual, carregando: true, erro: '', status: null }));
 
     carregar(controle.signal)
-      .then((dados) => setEstado({ dados, carregando: false, erro: '' }))
+      .then((dados) => setEstado({ dados, carregando: false, erro: '', status: 200 }))
       .catch((e) => {
         if (e.name === 'AbortError') return;
-        setEstado({ dados: null, carregando: false, erro: e.message || 'Erro inesperado.' });
+        setEstado({
+          dados: null,
+          carregando: false,
+          erro: e.message || 'Erro inesperado.',
+          status: e.status ?? null,
+        });
       });
 
     return () => controle.abort();
