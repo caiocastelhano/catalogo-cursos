@@ -17,6 +17,36 @@ namespace CatalogoCursos.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.32");
 
+            modelBuilder.Entity("CatalogoCursos.Models.Aula", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DuracaoMinutos")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ModuloId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Ordem")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModuloId");
+
+                    b.ToTable("Aulas");
+                });
+
             modelBuilder.Entity("CatalogoCursos.Models.Curso", b =>
                 {
                     b.Property<int>("Id")
@@ -36,6 +66,9 @@ namespace CatalogoCursos.Migrations
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Destaque")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ImagemUrl")
                         .IsRequired()
@@ -57,99 +90,78 @@ namespace CatalogoCursos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Sobre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cursos");
+                    b.HasIndex("Categoria");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CargaHoraria = 40,
-                            Categoria = "Tecnologia",
-                            DataDisponibilizacao = new DateOnly(2026, 3, 1),
-                            Descricao = "Fundamentos de sensores, atuadores e controladores.",
-                            ImagemUrl = "/img/curso-1.jpg",
-                            Modalidade = "EAD",
-                            NomeBreve = "Automação",
-                            NomeCompleto = "Introdução à Automação Industrial",
-                            PublicoAlvo = "Iniciantes na área técnica",
-                            Status = "Disponível"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CargaHoraria = 60,
-                            Categoria = "Gestão",
-                            DataDisponibilizacao = new DateOnly(2026, 4, 15),
-                            Descricao = "Planejamento, cronograma e acompanhamento de entregas.",
-                            ImagemUrl = "/img/curso-2.jpg",
-                            Modalidade = "Presencial",
-                            NomeBreve = "Gestão de Projetos",
-                            NomeCompleto = "Gestão de Projetos para Equipes Industriais",
-                            PublicoAlvo = "Líderes e coordenadores",
-                            Status = "Disponível"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CargaHoraria = 20,
-                            Categoria = "Saúde e Segurança",
-                            DataDisponibilizacao = new DateOnly(2026, 2, 10),
-                            Descricao = "Normas, prevenção de acidentes e uso de EPIs.",
-                            ImagemUrl = "/img/curso-3.jpg",
-                            Modalidade = "EAD",
-                            NomeBreve = "Segurança",
-                            NomeCompleto = "Segurança do Trabalho na Prática",
-                            PublicoAlvo = "Todos os colaboradores",
-                            Status = "Disponível"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CargaHoraria = 30,
-                            Categoria = "Tecnologia",
-                            DataDisponibilizacao = new DateOnly(2026, 12, 1),
-                            Descricao = "Tabelas dinâmicas, fórmulas e visualização de indicadores.",
-                            ImagemUrl = "/img/curso-4.jpg",
-                            Modalidade = "Presencial",
-                            NomeBreve = "Dados",
-                            NomeCompleto = "Análise de Dados com Planilhas",
-                            PublicoAlvo = "Profissionais administrativos",
-                            Status = "Em breve"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CargaHoraria = 45,
-                            Categoria = "Gestão",
-                            DataDisponibilizacao = new DateOnly(2027, 1, 20),
-                            Descricao = "Feedback, condução de reuniões e comunicação com equipes.",
-                            ImagemUrl = "/img/curso-5.jpg",
-                            Modalidade = "EAD",
-                            NomeBreve = "Liderança",
-                            NomeCompleto = "Liderança e Comunicação",
-                            PublicoAlvo = "Gestores em início de carreira",
-                            Status = "Em breve"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CargaHoraria = 16,
-                            Categoria = "Saúde e Segurança",
-                            DataDisponibilizacao = new DateOnly(2025, 8, 5),
-                            Descricao = "Organização do posto de trabalho e prevenção de lesões.",
-                            ImagemUrl = "/img/curso-6.jpg",
-                            Modalidade = "Presencial",
-                            NomeBreve = "Ergonomia",
-                            NomeCompleto = "Ergonomia e Qualidade de Vida no Trabalho",
-                            PublicoAlvo = "Equipes operacionais",
-                            Status = "Encerrado"
-                        });
+                    b.HasIndex("Modalidade");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("Cursos");
+                });
+
+            modelBuilder.Entity("CatalogoCursos.Models.Modulo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CursoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Ordem")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CursoId");
+
+                    b.ToTable("Modulos");
+                });
+
+            modelBuilder.Entity("CatalogoCursos.Models.Aula", b =>
+                {
+                    b.HasOne("CatalogoCursos.Models.Modulo", null)
+                        .WithMany("Aulas")
+                        .HasForeignKey("ModuloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CatalogoCursos.Models.Modulo", b =>
+                {
+                    b.HasOne("CatalogoCursos.Models.Curso", null)
+                        .WithMany("Modulos")
+                        .HasForeignKey("CursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CatalogoCursos.Models.Curso", b =>
+                {
+                    b.Navigation("Modulos");
+                });
+
+            modelBuilder.Entity("CatalogoCursos.Models.Modulo", b =>
+                {
+                    b.Navigation("Aulas");
                 });
 #pragma warning restore 612, 618
         }
