@@ -486,3 +486,6 @@ $RECYCLE.BIN/
 # Banco SQLite local
 catalogo.db*
 frontend/assets-originais/
+
+node_modules/
+frontend/dist/

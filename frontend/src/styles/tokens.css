@@ -1,0 +1,26 @@
+:root {
+  /* Cores: medidas no protótipo e nos SVGs */
+  --preto: #0c0c0d;
+  --branco: #ffffff;
+  --pessego: #fcd19c;
+  --lilas: #e4ccff;
+  --vinho: #890000;
+  --vermelho-depoimento: #c3222c;
+  --vermelho-card: #990212;
+  --vermelho-destaque: #e30513;
+  --rodape: #1d0300;
+
+  /* Estimados: ver diferenças Figma x aplicação */
+  --cinza-texto: #5a5a5a;
+  --borda: #d0d0d0;
+  --borda-suave: #e6e6e6;
+  --foco: #005fcc;
+
+  --fonte: 'Open Sans Variable', system-ui, sans-serif;
+  --texto-base: 16px;
+  --raio-card: 8px;
+  --raio-botao: 6px;
+  --sombra-card: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --largura-container: 1200px;
+  --gutter: 24px;
+}

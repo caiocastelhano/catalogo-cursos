@@ -1,0 +1,75 @@
+.rodape {
+  padding-block: 48px 32px;
+  background: var(--rodape);
+  color: var(--branco);
+}
+
+.rodape__grade {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.6fr 1fr;
+  gap: 32px;
+}
+
+.rodape__logo {
+  height: 20px;
+  width: auto;
+  margin-bottom: 16px;
+}
+
+.rodape__contato {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.rodape__titulo {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.rodape__lista {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(216, 216, 216, 0.7);
+}
+
+.rodape__lista a {
+  text-decoration: none;
+}
+
+.rodape__lista a:hover {
+  text-decoration: underline;
+}
+
+.rodape__base {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 48px;
+  font-size: 14px;
+  color: rgba(216, 216, 216, 0.7);
+}
+
+.rodape__direitos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rodape__direitos img {
+  height: 16px;
+  width: auto;
+}
+
+.rodape__redes {
+  display: flex;
+  gap: 12px;
+}
+
+/* Garante ícones brancos, independentemente da cor original do SVG */
+.rodape__redes img {
+  filter: brightness(0) invert(1);
+}
