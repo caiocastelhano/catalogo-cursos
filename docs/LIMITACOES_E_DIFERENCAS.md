@@ -14,6 +14,7 @@
 | Vídeo | Sem reprodução | Apenas a imagem de capa, sem arquivo de vídeo fornecido |
 | Links do cabeçalho e do rodapé | Parte sem destino | Ex.: Certificação, Blog, Termos de Uso; o protótipo não tem essas páginas |
 | Testes automatizados | Não incluídos | Validação manual e por `scripts/verificar.sh` |
+| Desempenho (Lighthouse) | Performance de 68 (desktop) e 69 (mobile) na página inicial | Servidor gratuito em Frankfurt com 0,1 CPU e SPA renderizada no cliente (HTML, JS e depois API). FCP de 2,5 s (desktop) e 3,7 s (mobile); CLS 0; acessibilidade, boas práticas e SEO em 100 |
 
 ## 2. Diferenças entre o Figma e a aplicação
 
@@ -39,5 +40,5 @@ O protótipo foi acessado apenas no modo de apresentação, sem acesso ao arquiv
 | 16 | Sala de aula | Conteúdo de uma aula do curso 1 | "Boas práticas" generalizado com o nome do curso; demais aulas mostram descrição e duração; progresso calculado | Dados fictícios reaproveitados para todos os cursos |
 | 17 | Banner da sala de aula | Um banner | Mesmo banner em todos os cursos; proporção estimada | Apenas um arquivo fornecido |
 | 18 | Menu de módulos da sala | Sem indicador de abrir e fechar | Mantido sem indicador; estado exposto por `aria-expanded` | Fidelidade ao Figma |
-| 19 | Cargo nos depoimentos da página de detalhes | `#BDBDBD` | `#767676` | O valor do Figma tem contraste de cerca de 1,9:1 sobre fundo branco, abaixo dos 4,5:1 da WCAG AA |
+| 19 | Cargo nos depoimentos da página de detalhes | `#BDBDBD` | `#767676` | O valor do Figma tem contraste de cerca de 1,9:1 sobre fundo branco, abaixo dos 4,5:1 da WCAG AA; o tom escolhido atinge 4,5:1 e continua sendo um cinza claro |
 | 20 | Barra de rolagem do conteúdo da sala | Sem barra visível | Oculta; a rolagem funciona por mouse, toque e teclado | Fidelidade ao Figma, com a área de conteúdo focável por teclado |

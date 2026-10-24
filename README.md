@@ -146,6 +146,7 @@ Categoria, modalidade e status são texto, com índice. O catálogo é somente l
 - Cada card tem um único link (o título), imagens decorativas com `alt` vazio e imagens informativas com texto alternativo.
 - Situações como status do curso e aula concluída sempre em texto, nunca só por cor.
 - Alvos de toque de 44 px nos controles principais e respeito a `prefers-reduced-motion`.
+- Lighthouse em produção (24/10/2026), página inicial: acessibilidade 100, boas práticas 100 e SEO 100 em desktop e mobile; performance 68 (desktop) e 69 (mobile), limitada pela hospedagem gratuita (ver `docs/LIMITACOES_E_DIFERENCAS.md`).
 
 ## 11. Processo de publicação
 
