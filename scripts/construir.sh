@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Compila o front-end, copia para wwwroot e publica o back-end.
-# Uso: bash scripts/construir.sh /caminho/absoluto/de/saida
 set -euo pipefail
 
 SAIDA="${1:?Informe a pasta de saída. Ex.: bash scripts/construir.sh /tmp/publish-teste}"

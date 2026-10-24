@@ -35,7 +35,6 @@
   flex: none;
 }
 
-/* A barra é fixa: reserva espaço no rodapé e nas rolagens por foco (teclado) */
 body:has(.barra-matricula) .rodape {
   padding-bottom: 112px;
 }

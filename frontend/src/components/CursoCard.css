@@ -29,7 +29,6 @@
   object-fit: cover;
 }
 
-/* Degradê estimado: ver diferenças Figma x aplicação */
 .curso-card__sombra {
   position: absolute;
   inset: 0;
@@ -65,7 +64,6 @@
   text-decoration: none;
 }
 
-/* Link esticado: o card inteiro é clicável */
 .curso-card__link::after {
   content: '';
   position: absolute;

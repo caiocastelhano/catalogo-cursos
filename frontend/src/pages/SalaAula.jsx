@@ -16,7 +16,6 @@ const TEXTO_ESTADO = {
 };
 
 function Sala({ curso }) {
-  // Lista única de aulas, na ordem do curso, com o rótulo "módulo.aula" (ex.: 1.2)
   const aulas = useMemo(
     () =>
       curso.modulos.flatMap((modulo) =>
@@ -39,7 +38,6 @@ function Sala({ curso }) {
     aulas.findIndex((a) => a.id === atualId),
   );
   const aulaAtual = aulas[indiceAtual];
-  // A aula em andamento conta meio ponto no progresso
   const progresso = aulas.length ? Math.round(((indiceAtual + 0.5) / aulas.length) * 100) : 0;
 
   const termo = normalizar(busca);

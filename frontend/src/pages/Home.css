@@ -135,7 +135,6 @@
     gap: 32px;
   }
 }
-/* Gradiente escuro no topo da imagem da chamada final (valor estimado: 0.3) */
 .cta-final .video-thumb::before {
   content: '';
   position: absolute;
@@ -146,4 +145,15 @@
     rgba(12, 12, 13, 0) 55%
   );
   pointer-events: none;
+}
+
+.impacto__linha {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    padding-block: 150px 56px;
+  }
 }

@@ -21,7 +21,6 @@ export function useApi(carregar, chave) {
       });
 
     return () => controle.abort();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chave, tentativa]);
 
   const recarregar = useCallback(() => setTentativa((n) => n + 1), []);

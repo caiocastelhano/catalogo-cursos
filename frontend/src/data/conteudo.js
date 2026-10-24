@@ -69,7 +69,6 @@ export const depoimentos = [
       'A conclusão do curso foi uma etapa muito gratificante. As aulas eram bem organizadas e o horário foi pensado para facilitar nosso aprendizado.',
   },
 ];
-// ---------- Detalhes do curso: aulas, avaliações e dúvidas frequentes ----------
 
 const provasEAvaliacoes = {
   titulo: 'Provas e Avaliações',
@@ -166,7 +165,6 @@ const duvidasOnline = [
   },
 ];
 
-// Variante para cursos presenciais: troca só as perguntas 1, 2 e 8, que dizem "online".
 const duvidasPresencial = duvidasOnline.map((item, indice) => {
   if (indice === 0) {
     return {
@@ -206,8 +204,6 @@ export function conteudoPorModalidade(modalidade) {
     duvidas: duvidasOnline,
   };
 }
-
-// ---------- Sala de aula ----------
 
 export function conteudoAula(curso, aula) {
   if (aula.titulo === 'Boas práticas') {

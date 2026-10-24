@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-# Gera catalogo-cursos-publicacao.zip com:
-#   app-publicada/       aplicação compilada (pronta para rodar com o .NET 8)
-#   fonte-para-publicar/ arquivos versionados no Git (Dockerfile, back, front, scripts, docs)
-# Uso: bash scripts/gerar-zip-publicacao.sh
 set -euo pipefail
 
 command -v zip > /dev/null || { echo "Instale o zip: sudo apt install -y zip"; exit 1; }

@@ -88,7 +88,7 @@
   gap: 24px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .filtros {
     grid-template-columns: 1fr 1fr;
   }

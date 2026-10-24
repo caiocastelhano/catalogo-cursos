@@ -6,7 +6,6 @@ export default function Header({ tema = 'claro' }) {
   const [rolou, setRolou] = useState(false);
   const escuro = tema === 'escuro';
 
-  // Na home, o cabeçalho é fixo e só ganha fundo depois da primeira rolagem
   useEffect(() => {
     if (!escuro) {
       setRolou(false);

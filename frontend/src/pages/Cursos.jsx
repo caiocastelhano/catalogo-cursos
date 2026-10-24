@@ -57,17 +57,14 @@ export default function Cursos() {
     setParams({}, { replace: true });
   }
 
-  // URL -> campo de busca (voltar do navegador, limpar filtros)
   useEffect(() => {
     setTexto((atual) => (atual.trim() === filtros.busca ? atual : filtros.busca));
   }, [filtros.busca]);
 
-  // campo de busca -> URL, com espera de 300 ms para não consultar a cada tecla
   useEffect(() => {
     if (texto.trim() === filtros.busca) return undefined;
     const espera = setTimeout(() => atualizar({ busca: texto.trim() }), 300);
     return () => clearTimeout(espera);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [texto]);
 
   return (

@@ -30,9 +30,15 @@
 
 .rodape__lista {
   display: grid;
-  gap: 8px;
+  gap: 4px;
   font-size: 14px;
   color: rgba(216, 216, 216, 0.7);
+}
+
+.rodape__lista a,
+.rodape__lista span {
+  display: inline-block;
+  padding-block: 4px;
 }
 
 .rodape__lista a {
@@ -69,7 +75,25 @@
   gap: 12px;
 }
 
-/* Garante ícones brancos, independentemente da cor original do SVG */
 .rodape__redes img {
   filter: brightness(0) invert(1);
+}
+
+@media (max-width: 960px) {
+  .rodape__grade {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .rodape__grade {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .rodape__base {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 32px;
+  }
 }

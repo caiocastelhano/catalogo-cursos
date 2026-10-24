@@ -14,7 +14,6 @@ async function requisitar(caminho, opcoes) {
         const problema = await resposta.json();
         detalhe = problema.detail || problema.title || '';
       } catch {
-        // resposta sem JSON: usa a mensagem padrão abaixo
       }
     }
     const padrao =

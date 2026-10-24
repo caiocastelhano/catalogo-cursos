@@ -1,36 +1,23 @@
 # Catálogo de cursos SESI+INDÚSTRIA
 
-Aplicação web para consultar, pesquisar e filtrar um catálogo de cursos de um ambiente educacional (Moodle), desenvolvida como atividade prática do processo seletivo Desenvolvedor de Sistemas I (CTED).
+Aplicação web de catálogo de cursos de um ambiente educacional (Moodle), desenvolvida para a atividade prática do processo seletivo Desenvolvedor de Sistemas I.
 
 - Aplicação publicada: https://catalogo-cursos-q297.onrender.com
 - Repositório: https://github.com/caiocastelhano/catalogo-cursos
-- Documentos complementares: [limitações e diferenças em relação ao Figma](docs/LIMITACOES_E_DIFERENCAS.md) · [uso de IA](USO_DE_IA.md)
-
-> O plano gratuito do Render coloca o serviço em repouso após cerca de 15 minutos sem acesso. A primeira requisição depois disso pode levar cerca de um minuto.
 
 ## 1. Objetivo
 
-Permitir que o usuário liste cursos pela API, pesquise por nome, filtre por categoria, modalidade e status (combinando busca e filtros), veja a quantidade de resultados, limpe os filtros e abra os detalhes de cada curso. O front-end segue o protótipo do Figma fornecido. Todos os dados são fictícios.
-
-Páginas:
-
-| Rota | Conteúdo |
-|---|---|
-| `/` | Home: hero, principais cursos, impacto, depoimentos e chamada final |
-| `/cursos` | Catálogo com busca, filtros, contador e estados de carregamento, erro e vazio |
-| `/cursos/:id` | Detalhes do curso, com módulos, aulas e avaliações e dúvidas frequentes |
-| `/cursos/:id/aula` | Sala de aula de demonstração |
+Permitir que o usuário liste cursos pela API, pesquise por nome, filtre por categoria, modalidade e status (combinando busca e filtros), veja a quantidade de resultados, limpe os filtros e abra os detalhes de cada curso. O front-end segue o protótipo do Figma fornecido, e todos os dados são fictícios.
 
 ## 2. Tecnologias
 
 | Camada | Tecnologia |
 |---|---|
 | Back-end | C#, .NET 8, ASP.NET Core Minimal API |
-| Acesso a dados | Entity Framework Core 8 (migrations) |
+| Acesso a dados | Entity Framework Core 8, com migrations |
 | Banco de dados | SQLite (código aberto) |
 | Documentação da API | Swagger (Swashbuckle) |
-| Front-end | React 19, Vite 6, React Router 7, CSS puro |
-| Fonte | Open Sans (`@fontsource-variable/open-sans`) |
+| Front-end | React 19, Vite 6, React Router 7, CSS |
 | Publicação | Docker (build em 3 etapas) no Render, plano gratuito |
 
 ## 3. Arquitetura
@@ -47,30 +34,22 @@ Kestrel (.NET 8)
    └── demais rotas    index.html (o React Router resolve a página)
 ```
 
-Em desenvolvimento, o Vite serve o front em `http://localhost:5173` e repassa `/api` para a API em `http://localhost:5257` (proxy), sem necessidade de CORS.
+Em desenvolvimento, o Vite serve o front em `http://localhost:5173` e repassa `/api` para a API em `http://localhost:5257`.
 
 ## 4. Estrutura de pastas
 
 ```
 catalogo-cursos/
 ├── backend/CatalogoCursos/
-│   ├── Data/            AppDbContext e DbSeeder (dados fictícios)
+│   ├── Data/            AppDbContext e DbSeeder
 │   ├── Dtos/            objetos de resposta da API
 │   ├── Models/          Curso, Modulo, Aula
 │   ├── Migrations/      migrations do EF Core
 │   ├── Utils/           normalização de texto para a busca
-│   ├── wwwroot/         front compilado (gerado no build; fora do Git)
 │   └── Program.cs       configuração e endpoints
 ├── frontend/
-│   ├── public/          imagens otimizadas (.webp) e ícones (.svg)
-│   └── src/
-│       ├── api/         cliente da API
-│       ├── components/  cabeçalho, rodapé, cards, carrossel, acordeão etc.
-│       ├── data/        textos estáticos (depoimentos, benefícios, dúvidas)
-│       ├── hooks/       useApi, useTitulo
-│       ├── pages/       Home, Cursos, CursoDetalhe, SalaAula
-│       ├── styles/      tokens de design e estilos globais
-│       └── utils/       formatação e normalização
+│   ├── public/          imagens (.webp) e ícones (.svg)
+│   └── src/             api, components, data, hooks, pages, styles, utils
 ├── scripts/             build, verificação e geração do ZIP
 ├── docs/                limitações e diferenças em relação ao Figma
 ├── Dockerfile
@@ -80,55 +59,42 @@ catalogo-cursos/
 
 ## 5. Instruções para execução
 
-Requisitos: .NET SDK 8, Node.js 20 ou superior e bash (para os scripts).
+Requisitos: .NET SDK 8, Node.js 20 ou superior e bash.
 
-### Desenvolvimento (dois terminais)
+Desenvolvimento, em dois terminais:
 
 ```bash
 git clone https://github.com/caiocastelhano/catalogo-cursos.git
 cd catalogo-cursos
 
-# Terminal 1: API em http://localhost:5257 (Swagger em /swagger)
 cd backend/CatalogoCursos
 dotnet run
 
-# Terminal 2: front-end em http://localhost:5173
 cd frontend
 npm install
 npm run dev
 ```
 
-### Simulação da produção (um único servidor)
+A API fica em `http://localhost:5257` (Swagger em `/swagger`) e o front em `http://localhost:5173`.
+
+Execução como em produção, com um único servidor:
 
 ```bash
 bash scripts/testar-publicacao.sh
-```
-
-O script compila o front, copia para `wwwroot`, publica o .NET, sobe o servidor na porta 8099 e executa `scripts/verificar.sh`. Para abrir no navegador:
-
-```bash
 cd /tmp/publish-teste && PORT=8099 dotnet CatalogoCursos.dll
 ```
 
-### Com Docker
-
-```bash
-docker build -t catalogo-cursos .
-docker run --rm -p 8080:8080 -e PORT=8080 catalogo-cursos
-```
-
-Acesse `http://localhost:8080`. O Dockerfile foi validado pelo build da hospedagem e pela simulação acima; não foi executado localmente com Docker.
+O primeiro comando compila o front, publica o .NET e executa as verificações. O segundo sobe o servidor em `http://localhost:8099`.
 
 ## 6. Configuração do banco
 
-- Banco: SQLite, arquivo `catalogo.db` criado no diretório de execução.
-- Conexão: `ConnectionStrings:Default`, com padrão `Data Source=catalogo.db`. Pode ser alterada pela variável de ambiente `ConnectionStrings__Default`.
-- Na inicialização, a aplicação aplica as migrations (`Database.Migrate()`) e popula os dados fictícios (`DbSeeder`) se a tabela de cursos estiver vazia.
-- Nenhuma configuração manual é necessária.
-- Para recriar o banco do zero, apague `catalogo.db` e reinicie.
-- Nova migration (a partir de `backend/CatalogoCursos`): `dotnet ef migrations add NomeDaMigration`.
+- SQLite, arquivo `catalogo.db` criado no diretório de execução.
+- A conexão usa `ConnectionStrings:Default` (padrão `Data Source=catalogo.db`), que pode ser alterada pela variável de ambiente `ConnectionStrings__Default`.
+- Na inicialização, a aplicação aplica as migrations e popula os dados fictícios se a tabela de cursos estiver vazia. Nenhuma configuração manual é necessária.
+- Para recriar o banco, apague `catalogo.db` e reinicie.
+- Nova migration, a partir de `backend/CatalogoCursos`: `dotnet ef migrations add NomeDaMigration`.
 
-Dados do seed: 8 cursos, 3 categorias (Matemática, Ciências da Natureza e Linguagens), 2 modalidades (Presencial e Online) e 3 status (Inscrições abertas, Em andamento e Encerrado), com cargas horárias, módulos, aulas e públicos-alvo diferentes.
+Dados: 8 cursos, 3 categorias (Matemática, Ciências da Natureza e Linguagens), 2 modalidades (Presencial e Online) e 3 status (Inscrições abertas, Em andamento e Encerrado), com cargas horárias, módulos, aulas e públicos-alvo diferentes.
 
 ## 7. Endpoints
 
@@ -140,124 +106,63 @@ Dados do seed: 8 cursos, 3 categorias (Matemática, Ciências da Natureza e Ling
 | GET | `/healthz` | Verificação de saúde |
 | GET | `/swagger` | Documentação interativa |
 
-Parâmetros de `GET /api/cursos` (todos opcionais e combináveis):
+Parâmetros de `GET /api/cursos`, todos opcionais e combináveis:
 
 | Parâmetro | Efeito |
 |---|---|
-| `busca` | Nome completo ou breve contém o texto (sem diferenciar acentos nem maiúsculas) |
+| `busca` | Nome completo ou breve contém o texto, sem diferenciar acentos nem maiúsculas |
 | `categoria` | Igual à categoria |
 | `modalidade` | Igual à modalidade |
 | `status` | Igual ao status |
 
-Resposta de `GET /api/cursos?categoria=Linguagens`:
-
-```json
-{
-  "total": 2,
-  "itens": [
-    {
-      "id": 7,
-      "nomeCompleto": "Comunicação Técnica e Leitura de Manuais na Indústria",
-      "nomeBreve": "Comunicação Técnica",
-      "descricao": "...",
-      "categoria": "Linguagens",
-      "modalidade": "Online",
-      "cargaHoraria": 20,
-      "publicoAlvo": "...",
-      "status": "Em andamento",
-      "imagemUrl": "/img/curso-7.webp",
-      "dataDisponibilizacao": "2026-09-14",
-      "destaque": false
-    }
-  ]
-}
-```
-
-Erros: `GET /api/cursos/99` devolve 404 no formato Problem Details (`title`, `status`, `detail`). Rotas inexistentes sob `/api` devolvem 404, sem cair no front-end.
+A resposta traz `total` e a lista `itens`. `GET /api/cursos/99` devolve 404 no formato Problem Details, e rotas inexistentes sob `/api` também devolvem 404.
 
 ## 8. Modelo de dados
 
-```mermaid
-erDiagram
-    CURSO ||--o{ MODULO : possui
-    MODULO ||--o{ AULA : possui
+| Entidade | Campos | Relação |
+|---|---|---|
+| Curso | Id, NomeCompleto, NomeBreve, Descricao, Sobre, Categoria, Modalidade, CargaHoraria, PublicoAlvo, Status, ImagemUrl, DataDisponibilizacao (opcional), Destaque | 1 curso tem N módulos |
+| Modulo | Id, CursoId, Ordem, Titulo, Descricao | 1 módulo tem N aulas |
+| Aula | Id, ModuloId, Ordem, Titulo, Descricao, DuracaoMinutos | pertence a um módulo |
 
-    CURSO {
-        int Id PK
-        string NomeCompleto
-        string NomeBreve
-        string Descricao
-        string Sobre
-        string Categoria
-        string Modalidade
-        int CargaHoraria
-        string PublicoAlvo
-        string Status
-        string ImagemUrl
-        date DataDisponibilizacao "opcional"
-        bool Destaque
-    }
-    MODULO {
-        int Id PK
-        int CursoId FK
-        int Ordem
-        string Titulo
-        string Descricao
-    }
-    AULA {
-        int Id PK
-        int ModuloId FK
-        int Ordem
-        string Titulo
-        string Descricao
-        int DuracaoMinutos
-    }
-```
-
-Categoria, modalidade e status são texto, com índice. Como o catálogo é somente leitura e os valores são poucos, tabelas separadas não trariam ganho; a lista de valores válidos vem de `GET /api/filtros`.
+Categoria, modalidade e status são texto, com índice. O catálogo é somente leitura e os valores são poucos, e a lista de valores válidos vem de `GET /api/filtros`.
 
 ## 9. Estratégia de responsividade
 
 - Layout fluido com CSS Grid e Flexbox, contêiner de até 1200 px e margens laterais de 24 px.
-- Pontos de quebra em 960, 860, 800 e 560 px. Exemplos: os filtros passam de 5 colunas para 2 e depois para 1; hero, "Sobre o curso" e chamada final passam para uma coluna; na sala de aula, a barra lateral vira um bloco acima do conteúdo.
-- Tipografia com `clamp()` nos títulos.
-- Grade do catálogo com `repeat(auto-fill, minmax(260px, 1fr))`, sem quebras fixas.
-- Imagens com `aspect-ratio` e `object-fit: cover`, o que evita deslocamento de layout.
-- Carrosséis com `scroll-snap` e rolagem por toque, além de botões.
-- O Figma fornecido tem apenas a versão desktop; o comportamento em telas menores foi definido neste projeto.
+- Principais pontos de quebra: 1100, 960, 860, 800, 720 e 560 px. Exemplos: os filtros passam de 5 colunas para 2 e depois para 1; hero, detalhes e chamada final viram uma coluna; o cabeçalho passa a ter duas linhas; o rodapé vai de 4 colunas para 2 e para 1; a barra lateral da sala de aula fica acima do conteúdo.
+- Títulos com `clamp()`, grade do catálogo com `repeat(auto-fill, minmax(260px, 1fr))` e imagens com `aspect-ratio` e `object-fit: cover`.
+- Carrosséis com `scroll-snap`, rolagem por toque e botões.
+- O Figma fornecido tem apenas a versão desktop, então o comportamento em telas menores foi definido neste projeto.
 
 ## 10. Decisões de acessibilidade
 
-- Idioma da página (`pt-BR`), título por rota e hierarquia de títulos coerente (um `h1` por página).
-- Marcos semânticos: `header`, `nav` com rótulo, `main`, `aside`, `footer`; link "Ir para o conteúdo" no início.
-- Todos os campos com `label`; busca em `form` com `role="search"`.
-- Contagem de resultados em região `aria-live`; carregamento com `role="status"` e erro com `role="alert"`, com botão "Tentar novamente".
-- Foco visível em todos os elementos interativos e navegação completa por teclado.
-- Acordeões com `<details>` e `<summary>` nativos; carrosséis com `aria-roledescription`, botões rotulados e trilho focável.
-- Cards inteiros clicáveis por um único link (o título); imagens decorativas com `alt` vazio e imagens informativas com texto alternativo.
-- Situação do curso, da aula e da avaliação sempre em texto, nunca só por cor.
-- Alvos de toque de pelo menos 44 px nos controles principais e respeito a `prefers-reduced-motion`.
-- Medições (Lighthouse e axe): a registrar neste documento após a revisão final.
+- Idioma `pt-BR`, título por rota e um `h1` por página, com hierarquia de títulos coerente.
+- Marcos semânticos (`header`, `nav`, `main`, `aside`, `footer`) e link "Ir para o conteúdo".
+- Campos com `label` e busca em `form` com `role="search"`.
+- Contagem de resultados em região `aria-live`, carregamento com `role="status"` e erro com `role="alert"` e botão "Tentar novamente".
+- Foco visível e navegação completa por teclado, inclusive nos carrosséis.
+- Acordeões com `<details>` e `<summary>` nativos, e botões dos carrosséis com rótulo.
+- Cada card tem um único link (o título), imagens decorativas com `alt` vazio e imagens informativas com texto alternativo.
+- Situações como status do curso e aula concluída sempre em texto, nunca só por cor.
+- Alvos de toque de 44 px nos controles principais e respeito a `prefers-reduced-motion`.
 
 ## 11. Processo de publicação
 
-1. O repositório está no GitHub (branch `main`).
-2. No Render, serviço Web com runtime Docker, plano gratuito, região Frankfurt, usando o `Dockerfile` da raiz.
-3. A variável `PORT` é definida pelo Render e lida pela aplicação.
-4. Cada `git push` na `main` dispara um novo build:
-   - etapa 1: Node compila o front (`npm ci` e `npm run build`);
-   - etapa 2: o SDK do .NET publica a API, com o front em `wwwroot`;
-   - etapa 3: imagem final apenas com o runtime do ASP.NET.
+1. O código fica no GitHub, na branch `main`.
+2. No Render, serviço Web com runtime Docker, plano gratuito, região Frankfurt, usando o `Dockerfile` da raiz. A variável `PORT` é fornecida pelo Render.
+3. O deploy é feito pelo painel do Render (Manual Deploy do último commit da `main`).
+4. O build tem 3 etapas: o Node compila o front, o SDK do .NET publica a API com o front em `wwwroot`, e a imagem final contém só o runtime do ASP.NET.
 5. Verificação do publicado: `bash scripts/verificar.sh https://catalogo-cursos-q297.onrender.com`.
-6. Pacote para entrega: `bash scripts/gerar-zip-publicacao.sh` gera `catalogo-cursos-publicacao.zip` com a aplicação compilada e o código versionado.
+6. Pacote de publicação em ZIP: `bash scripts/gerar-zip-publicacao.sh`.
 
 ## 12. Limitações conhecidas
 
-Resumo; a lista completa e as diferenças em relação ao Figma, com justificativas, estão em [docs/LIMITACOES_E_DIFERENCAS.md](docs/LIMITACOES_E_DIFERENCAS.md).
-
-- Hospedagem gratuita com repouso após inatividade; a primeira requisição pode demorar cerca de um minuto.
+- O plano gratuito do Render coloca o serviço em repouso após cerca de 15 minutos sem acesso, e a primeira requisição depois disso pode levar cerca de um minuto.
 - O SQLite fica dentro do contêiner e é recriado a cada reinício, o que é aceitável para um catálogo somente leitura.
-- Não há cadastro, edição ou exclusão de cursos, nem matrícula, autenticação ou integração com Moodle (diferencial não realizado).
-- A sala de aula é uma demonstração: o progresso é calculado a partir da aula selecionada, e o vídeo não possui reprodução.
-- Não há testes automatizados; a validação foi manual e por `scripts/verificar.sh`.
-- Valores de design que o protótipo não permite medir (tamanhos, espaçamentos, raios e sombras) foram estimados.
+- Não há cadastro, edição ou exclusão de cursos, matrícula, autenticação ou integração com Moodle.
+- A sala de aula é uma demonstração, e o vídeo não tem reprodução.
+- Não há testes automatizados; a validação foi manual e pelo script de verificação.
+- O `Dockerfile` não foi executado localmente com Docker.
+
+A lista completa, com as diferenças em relação ao Figma e suas justificativas, está em [docs/LIMITACOES_E_DIFERENCAS.md](docs/LIMITACOES_E_DIFERENCAS.md).

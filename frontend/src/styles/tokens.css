@@ -1,5 +1,4 @@
 :root {
-  /* Cores: medidas no protótipo e nos SVGs */
   --preto: #0c0c0d;
   --branco: #ffffff;
   --pessego: #fcd19c;
@@ -10,7 +9,6 @@
   --vermelho-destaque: #e30513;
   --rodape: #1d0300;
 
-  /* Estimados: ver diferenças Figma x aplicação */
   --cinza-texto: #5a5a5a;
   --borda: #d0d0d0;
   --borda-suave: #e6e6e6;
@@ -25,7 +23,6 @@
   --gutter: 24px;
 }
 :root {
-  /* Estimados: ver diferenças Figma x aplicação */
   --tag-linguagens: #cfe3ff;
   --vermelho-hero: rgba(190, 18, 22, 0.82);
 }

@@ -5,7 +5,6 @@ namespace CatalogoCursos.Utils;
 
 public static class Texto
 {
-    // Remove acentos e ignora maiúsculas para a busca por nome.
     public static string Normalizar(string valor)
     {
         var decomposto = valor.Trim().Normalize(NormalizationForm.FormD);

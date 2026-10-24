@@ -59,7 +59,6 @@
   line-height: 1.6;
 }
 
-/* Lista de módulos, aulas e dúvidas dentro dos acordeões */
 .modulos,
 .duvidas {
   display: grid;

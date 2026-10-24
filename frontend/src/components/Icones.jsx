@@ -109,7 +109,6 @@ export const Informacao = criar(
   </>,
 );
 
-// Ícone de situação da aula na sala de aula: concluída, atual ou pendente.
 export function StatusAula({ estado, tamanho = 18 }) {
   const comum = {
     viewBox: '0 0 24 24',

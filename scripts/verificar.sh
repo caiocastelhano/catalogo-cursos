@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Verifica uma instância do catálogo (local ou publicada).
-# Uso: bash scripts/verificar.sh https://catalogo-cursos-q297.onrender.com
 set -uo pipefail
 
 BASE="${1:?Informe a URL base. Ex.: bash scripts/verificar.sh http://localhost:8099}"

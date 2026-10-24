@@ -51,7 +51,6 @@
   padding: 16px 24px;
 }
 
-/* A trilha recorta o preenchimento: ponta esquerda arredondada, direita reta */
 .sala__barra {
   flex: 1;
   height: 6px;
@@ -144,7 +143,6 @@
   background: #f4f4f4;
 }
 
-/* Conteúdo com rolagem própria e barra oculta (como no Figma) */
 .sala__conteudo {
   overflow-y: auto;
   padding: 40px var(--gutter) 80px;
@@ -168,7 +166,6 @@
   margin-inline: auto;
 }
 
-/* Proporção do banner estimada: ver diferenças Figma x aplicação */
 .sala__banner {
   width: 100%;
   aspect-ratio: 6 / 1;

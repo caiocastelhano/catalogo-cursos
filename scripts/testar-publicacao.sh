@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Simula o que o Dockerfile faz (build do front + publish do .NET), sobe o servidor
-# publicado e roda as verificações. Uso: bash scripts/testar-publicacao.sh
 set -euo pipefail
 
 RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
