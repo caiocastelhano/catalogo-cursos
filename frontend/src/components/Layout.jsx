@@ -9,7 +9,7 @@ export default function Layout() {
     <>
       <a className="pular-conteudo" href="#conteudo">Ir para o conteúdo</a>
       <Header tema={pathname === '/' ? 'escuro' : 'claro'} />
-      <main id="conteudo" tabIndex={-1}>
+      <main id="conteudo" className="principal" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />

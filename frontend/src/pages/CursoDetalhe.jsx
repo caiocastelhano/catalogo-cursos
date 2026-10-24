@@ -109,12 +109,13 @@ export default function CursoDetalhe() {
               </button>
             )}
           </div>
-          <VideoThumb />
+          <VideoThumb prioridade />
         </div>
       </section>
 
-      <section className="detalhe-beneficios" aria-label="Diferenciais dos cursos">
+      <section className="detalhe-beneficios" aria-labelledby="titulo-diferenciais">
         <div className="container">
+          <h2 id="titulo-diferenciais" className="sr-only">Diferenciais dos cursos</h2>
           <Beneficios itens={beneficios} cor="bege" />
         </div>
       </section>

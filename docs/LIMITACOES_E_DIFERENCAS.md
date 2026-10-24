@@ -39,5 +39,5 @@ O protótipo foi acessado apenas no modo de apresentação, sem acesso ao arquiv
 | 16 | Sala de aula | Conteúdo de uma aula do curso 1 | "Boas práticas" generalizado com o nome do curso; demais aulas mostram descrição e duração; progresso calculado | Dados fictícios reaproveitados para todos os cursos |
 | 17 | Banner da sala de aula | Um banner | Mesmo banner em todos os cursos; proporção estimada | Apenas um arquivo fornecido |
 | 18 | Menu de módulos da sala | Sem indicador de abrir e fechar | Mantido sem indicador; estado exposto por `aria-expanded` | Fidelidade ao Figma |
-| 19 | Cargo nos depoimentos da página de detalhes | `#BDBDBD` | `#BDBDBD` | Fiel ao Figma, mas o contraste sobre fundo branco é de cerca de 1,9:1, abaixo dos 4,5:1 da WCAG AA |
+| 19 | Cargo nos depoimentos da página de detalhes | `#BDBDBD` | `#767676` | O valor do Figma tem contraste de cerca de 1,9:1 sobre fundo branco, abaixo dos 4,5:1 da WCAG AA |
 | 20 | Barra de rolagem do conteúdo da sala | Sem barra visível | Oculta; a rolagem funciona por mouse, toque e teclado | Fidelidade ao Figma, com a área de conteúdo focável por teclado |

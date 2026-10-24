@@ -167,7 +167,7 @@ function Sala({ curso }) {
       <main id="conteudo-aula" className="sala__conteudo" tabIndex={0} ref={conteudoRef}>
         <div className="sala__miolo">
           <img
-            className="sala__banner"
+            className="sala__banner" width="1600" height="891"
             src="/img/banner-ava.webp"
             alt="Banner do curso, com a marca SESI"
           />

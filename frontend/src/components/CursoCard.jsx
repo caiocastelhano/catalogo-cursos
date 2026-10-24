@@ -5,7 +5,7 @@ import './CursoCard.css';
 export default function CursoCard({ curso, mostrarDetalhes = false }) {
   return (
     <article className="curso-card">
-      <img className="curso-card__imagem" src={curso.imagemUrl} alt="" loading="lazy" />
+      <img className="curso-card__imagem" src={curso.imagemUrl} alt="" width="272" height="395" loading="lazy" decoding="async" />
       <div className="curso-card__sombra" />
       <div className="curso-card__tag">
         <TagCategoria categoria={curso.categoria} />

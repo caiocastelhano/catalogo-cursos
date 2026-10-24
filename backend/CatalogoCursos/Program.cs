@@ -39,13 +39,13 @@ app.UseStaticFiles(new StaticFileOptions
     OnPrepareResponse = contexto =>
     {
         var caminho = contexto.Context.Request.Path;
-        if (caminho.StartsWithSegments("/assets"))
+        if (caminho.StartsWithSegments("/assets") || caminho.StartsWithSegments("/fonts"))
         {
             contexto.Context.Response.Headers.CacheControl = "public,max-age=31536000,immutable";
         }
         else if (caminho.StartsWithSegments("/img") || caminho.StartsWithSegments("/icons"))
         {
-            contexto.Context.Response.Headers.CacheControl = "public,max-age=86400";
+            contexto.Context.Response.Headers.CacheControl = "public,max-age=2592000";
         }
     },
 });
