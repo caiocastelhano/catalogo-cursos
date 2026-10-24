@@ -489,3 +489,8 @@ frontend/assets-originais/
 
 node_modules/
 frontend/dist/
+
+# Front compilado, servido pelo .NET (gerado no build)
+backend/CatalogoCursos/wwwroot/*
+!backend/CatalogoCursos/wwwroot/.gitkeep
+catalogo-cursos-publicacao.zip

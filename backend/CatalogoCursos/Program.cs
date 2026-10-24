@@ -2,6 +2,7 @@ using CatalogoCursos.Data;
 using CatalogoCursos.Dtos;
 using CatalogoCursos.Models;
 using CatalogoCursos.Utils;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,12 +21,36 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
+builder.Services.AddResponseCompression();
 
 var app = builder.Build();
 
 app.UseExceptionHandler();
+app.UseResponseCompression();
 app.UseSwagger();
 app.UseSwaggerUI();
+
+// Arquivos do front-end compilado (wwwroot)
+var tiposDeConteudo = new FileExtensionContentTypeProvider();
+tiposDeConteudo.Mappings[".webp"] = "image/webp";
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = tiposDeConteudo,
+    OnPrepareResponse = contexto =>
+    {
+        var caminho = contexto.Context.Request.Path;
+        // Arquivos de /assets têm hash no nome: podem ficar em cache por muito tempo.
+        if (caminho.StartsWithSegments("/assets"))
+        {
+            contexto.Context.Response.Headers.CacheControl = "public,max-age=31536000,immutable";
+        }
+        else if (caminho.StartsWithSegments("/img") || caminho.StartsWithSegments("/icons"))
+        {
+            contexto.Context.Response.Headers.CacheControl = "public,max-age=86400";
+        }
+    },
+});
 
 using (var scope = app.Services.CreateScope())
 {
@@ -34,7 +59,7 @@ using (var scope = app.Services.CreateScope())
     DbSeeder.Seed(db);
 }
 
-app.MapGet("/", () => "API do catálogo de cursos no ar.");
+app.MapGet("/healthz", () => Results.Ok(new { status = "ok" }));
 
 var api = app.MapGroup("/api");
 
@@ -86,6 +111,21 @@ api.MapGet("/filtros", async (AppDbContext db) =>
     var status = await db.Cursos.AsNoTracking().Select(c => c.Status)
         .Distinct().OrderBy(x => x).ToListAsync();
     return Results.Ok(new FiltrosDto(categorias, modalidades, status));
+});
+
+// Qualquer outra rota devolve o index.html (o React Router resolve a página),
+// exceto /api, que responde 404 para não esconder erros da API.
+app.MapFallback(async contexto =>
+{
+    var arquivo = app.Environment.WebRootFileProvider.GetFileInfo("index.html");
+    if (contexto.Request.Path.StartsWithSegments("/api") || !arquivo.Exists)
+    {
+        contexto.Response.StatusCode = StatusCodes.Status404NotFound;
+        return;
+    }
+
+    contexto.Response.ContentType = "text/html; charset=utf-8";
+    await contexto.Response.SendFileAsync(arquivo);
 });
 
 app.Run();
