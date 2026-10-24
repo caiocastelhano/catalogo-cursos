@@ -1,14 +1,38 @@
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 
 export default function Header({ tema = 'claro' }) {
+  const [rolou, setRolou] = useState(false);
+  const escuro = tema === 'escuro';
+
+  // Na home, o cabeçalho é fixo e só ganha fundo depois da primeira rolagem
+  useEffect(() => {
+    if (!escuro) {
+      setRolou(false);
+      return undefined;
+    }
+    const aoRolar = () => setRolou(window.scrollY > 8);
+    aoRolar();
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    return () => window.removeEventListener('scroll', aoRolar);
+  }, [escuro]);
+
   const logo =
-    tema === 'escuro'
+    escuro && !rolou
       ? '/icons/logo-sesi-industria-white.svg'
       : '/icons/logo-sesi-industria-primary.svg';
 
+  const classes = [
+    'cabecalho',
+    `cabecalho--${tema}`,
+    escuro && rolou ? 'cabecalho--rolado' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <header className={`cabecalho cabecalho--${tema}`}>
+    <header className={classes}>
       <div className="container cabecalho__conteudo">
         <Link to="/" className="cabecalho__logo" aria-label="SESI+INDÚSTRIA, página inicial">
           <img src={logo} alt="" />

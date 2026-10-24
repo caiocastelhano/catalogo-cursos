@@ -32,14 +32,41 @@
   text-underline-offset: 6px;
 }
 
+/* Home: fixo, transparente sobre o hero e branco depois da primeira rolagem */
 .cabecalho--escuro {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto 0;
-  z-index: 10;
+  z-index: 40;
+  border-bottom-color: transparent;
   background: transparent;
-  border-bottom: 0;
   color: var(--branco);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
+
 .cabecalho--escuro .botao--contorno {
   border-color: rgba(255, 255, 255, 0.6);
+}
+
+.cabecalho--escuro.cabecalho--rolado {
+  border-bottom-color: var(--borda-suave);
+  background: var(--branco);
+  color: var(--preto);
+}
+
+.cabecalho--escuro.cabecalho--rolado .botao--contorno {
+  border-color: var(--borda);
+}
+
+/* Cabeçalho fixo: âncoras e foco por teclado não ficam escondidos atrás dele */
+html:has(.cabecalho--escuro) {
+  scroll-padding-top: 90px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cabecalho--escuro {
+    transition: none;
+  }
 }

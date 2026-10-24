@@ -1,14 +1,13 @@
 .sala {
   display: grid;
   grid-template-columns: 272px minmax(0, 1fr);
-  min-height: 100vh;
+  grid-template-rows: minmax(0, 1fr);
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .sala__lateral {
-  position: sticky;
-  top: 0;
-  align-self: start;
-  height: 100vh;
   overflow-y: auto;
   border-right: 1px solid var(--borda-suave);
   background: var(--branco);
@@ -52,9 +51,11 @@
   padding: 16px 24px;
 }
 
+/* A trilha recorta o preenchimento: ponta esquerda arredondada, direita reta */
 .sala__barra {
   flex: 1;
   height: 6px;
+  overflow: hidden;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.25);
 }
@@ -62,7 +63,6 @@
 .sala__barra span {
   display: block;
   height: 100%;
-  border-radius: 3px;
   background: var(--branco);
 }
 
@@ -144,12 +144,23 @@
   background: #f4f4f4;
 }
 
+/* Conteúdo com rolagem própria e barra oculta (como no Figma) */
 .sala__conteudo {
+  overflow-y: auto;
   padding: 40px var(--gutter) 80px;
+  scrollbar-width: none;
 }
 
-.sala__conteudo:focus {
+.sala__conteudo::-webkit-scrollbar {
+  display: none;
+}
+
+.sala__conteudo:focus:not(:focus-visible) {
   outline: none;
+}
+
+.sala__conteudo:focus-visible {
+  outline-offset: -4px;
 }
 
 .sala__miolo {
@@ -180,13 +191,18 @@
 
 @media (max-width: 860px) {
   .sala {
-    grid-template-columns: 1fr;
+    display: block;
+    height: auto;
+    overflow: visible;
   }
 
   .sala__lateral {
-    position: static;
-    height: auto;
+    overflow-y: visible;
     border-right: 0;
+  }
+
+  .sala__conteudo {
+    overflow-y: visible;
   }
 
   .sala__banner {

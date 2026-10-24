@@ -19,7 +19,7 @@ export default function Depoimentos({ tema = 'vinho' }) {
               </blockquote>
               <figcaption className="depoimento__autor">
                 <strong>{d.nome}</strong>
-                <span>{d.cargo}</span>
+                <span className="depoimento__cargo">{d.cargo}</span>
                 <span className="depoimento__estrelas" role="img" aria-label="Avaliação: 5 de 5 estrelas">
                   {[1, 2, 3, 4, 5].map((n) => (
                     <Estrela key={n} />

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { obterCurso } from '../api/cursos';
 import { useApi } from '../hooks/useApi';
@@ -32,6 +32,7 @@ function Sala({ curso }) {
   const [atualId, setAtualId] = useState(aulas[Math.min(1, aulas.length - 1)]?.id);
   const [abertos, setAbertos] = useState(() => new Set([curso.modulos[0]?.id]));
   const [busca, setBusca] = useState('');
+  const conteudoRef = useRef(null);
 
   const indiceAtual = Math.max(
     0,
@@ -62,6 +63,7 @@ function Sala({ curso }) {
 
   function selecionar(aulaId) {
     setAtualId(aulaId);
+    conteudoRef.current?.scrollTo(0, 0);
     window.scrollTo(0, 0);
   }
 
@@ -164,7 +166,7 @@ function Sala({ curso }) {
         </nav>
       </aside>
 
-      <main id="conteudo-aula" className="sala__conteudo" tabIndex={-1}>
+      <main id="conteudo-aula" className="sala__conteudo" tabIndex={0} ref={conteudoRef}>
         <div className="sala__miolo">
           <img
             className="sala__banner"

@@ -1,0 +1,59 @@
+.botao--animado {
+  transition: background-color 0.2s ease;
+}
+
+.botao--animado:hover {
+  background: #e6e6e6;
+}
+
+.seta-animada {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  overflow: hidden;
+}
+
+.seta-animada__saida,
+.seta-animada__entrada {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.seta-animada__saida {
+  transform: translateX(0);
+  transition: transform 0.25s ease-in;
+}
+
+.seta-animada__entrada {
+  transform: translateX(-100%);
+  transition: transform 0.25s ease-out 0.15s;
+}
+
+.botao--animado:hover .seta-animada__saida,
+.botao--animado:focus-visible .seta-animada__saida {
+  transform: translateX(100%);
+}
+
+.botao--animado:hover .seta-animada__entrada,
+.botao--animado:focus-visible .seta-animada__entrada {
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seta-animada__saida,
+  .seta-animada__entrada {
+    transition: none;
+  }
+
+  .botao--animado:hover .seta-animada__saida,
+  .botao--animado:focus-visible .seta-animada__saida {
+    transform: none;
+  }
+
+  .botao--animado:hover .seta-animada__entrada,
+  .botao--animado:focus-visible .seta-animada__entrada {
+    transform: translateX(-100%);
+  }
+}

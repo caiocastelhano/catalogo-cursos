@@ -18,6 +18,7 @@ import {
   Relogio,
   Seta,
 } from '../components/Icones.jsx';
+import SetaAnimada from '../components/SetaAnimada.jsx';
 import TagCategoria from '../components/TagCategoria.jsx';
 import VideoThumb from '../components/VideoThumb.jsx';
 import './CursoDetalhe.css';
@@ -185,12 +186,12 @@ export default function CursoDetalhe() {
             Fale com a gente
           </h2>
           <a
-            className="botao botao--branco"
+            className="botao botao--branco botao--animado"
             href={`mailto:contato@sesindustria.com.br?subject=${encodeURIComponent(
               `Dúvida sobre o curso ${curso.nomeBreve}`,
             )}`}
           >
-            Mandar uma mensagem <Seta tamanho={20} />
+            Mandar uma mensagem <SetaAnimada />
           </a>
         </div>
       </section>

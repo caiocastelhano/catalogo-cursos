@@ -135,3 +135,15 @@
     gap: 32px;
   }
 }
+/* Gradiente escuro no topo da imagem da chamada final (valor estimado: 0.3) */
+.cta-final .video-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 12, 13, 0.3) 0%,
+    rgba(12, 12, 13, 0) 55%
+  );
+  pointer-events: none;
+}
